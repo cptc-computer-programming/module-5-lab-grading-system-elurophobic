@@ -1,17 +1,23 @@
 # grading_system.py
 # Simple Grading System
+#This file takes a students assignment info and assigns it a letter grade
 
+LATE_PENALTY = 10
+EXTRA_CREDIT_BONUS = 5
 
 # ------------------------------------------------------------
 # Step 1: Get starting information
 # ------------------------------------------------------------
 
+
 student_name = input("Student name: ")
 
 score = int(input("Assignment score out of 100: "))
-was_late = input("Was the assignment late? (yes/no): ") == "yes"
-extra_credit_completed = input("Was extra credit completed? (yes/no): ") == "yes"
+user_was_late = input("Was the assignment late? (yes/no): ") 
+user_extra_credit_completed = input("Was extra credit completed? (yes/no): ") 
 
+was_late = user_was_late == "yes"
+extra_credit_completed = user_extra_credit_completed == "yes"
 
 # These variables will be updated by your decision structures.
 final_score = score
@@ -29,6 +35,9 @@ message = ""
 # - subtract 10 from final_score
 # - set message to "Late penalty applied."
 
+if was_late:
+    final_score = final_score - LATE_PENALTY
+    message = "Late penalty applied."
 
 
 
@@ -41,6 +50,9 @@ message = ""
 # - add 5 to final_score
 # - set message to "Extra credit applied."
 
+if extra_credit_completed:
+    final_score = final_score + EXTRA_CREDIT_BONUS
+    message = "Extra credit applied."
 
 
 
@@ -60,7 +72,10 @@ message = ""
 # Else:
 # - leave final_score unchanged
 
-
+if final_score > 100:
+    final_score = 100
+elif final_score < 0:
+    final_score = 0
 
 
 # ------------------------------------------------------------
@@ -76,7 +91,16 @@ message = ""
 # 60 or above: D
 # Below 60: F
 
-
+if final_score >= 90:
+    letter_grade = "A"
+elif final_score >= 80:
+    letter_grade = "B"
+elif final_score >= 70:
+    letter_grade = "C"
+elif final_score >= 60:
+    letter_grade = "D"
+else:
+    letter_grade = "F"
 
 
 # ------------------------------------------------------------
@@ -90,6 +114,7 @@ message = ""
 # Else:
 # - set is_passing to False
 
+is_passing = final_score >= 60
 
 
 
@@ -107,7 +132,13 @@ message = ""
 # Else:
 #     set message to "Not passing yet. Keep practicing."
 
-
+if is_passing:
+    if final_score >= 90:
+        message = "Excellent work!"
+    else:
+        message = "Passing assignment."
+else:
+    message = "Not passing yet. Keep practicing."
 
 
 # ------------------------------------------------------------
@@ -124,6 +155,7 @@ message = ""
 #
 # Otherwise, needs_review should be False.
 
+needs_review = (not is_passing) or (was_late and final_score < 70)
 
 
 
