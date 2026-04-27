@@ -3,6 +3,7 @@
 #This file takes a students assignment info and assigns it a letter grade
 
 LATE_PENALTY = 10
+EXTRA_CREDIT_BONUS = 5
 
 # ------------------------------------------------------------
 # Step 1: Get starting information
@@ -47,7 +48,9 @@ if was_late:
 # If extra credit was completed:
 # - add 5 to final_score
 # - set message to "Extra credit applied."
-
+if extra_credit_completed:
+    final_score = final_score + EXTRA_CREDIT_BONUS
+    message = "Extra credit applied."
 
 
 
