@@ -93,7 +93,7 @@ elif final_score < 0:
 
 if final_score >= 90:
     letter_grade = "A"
-elif finalscore >= 80:
+elif final_score >= 80:
     letter_grade = "B"
 elif final_score >= 70:
     letter_grade = "C"
@@ -114,6 +114,7 @@ else:
 # Else:
 # - set is_passing to False
 
+is_passing = final_score >= 60
 
 
 
@@ -131,7 +132,13 @@ else:
 # Else:
 #     set message to "Not passing yet. Keep practicing."
 
-
+if is_passing:
+    if final_score >= 90:
+        message = "Excellent work!"
+    else:
+        message = "Passing assignment."
+else:
+    message = "Not passing yet. Keep practicing."
 
 
 # ------------------------------------------------------------
@@ -148,6 +155,7 @@ else:
 #
 # Otherwise, needs_review should be False.
 
+needs_review = (not is_passing) or (was_late and final_score < 70)
 
 
 
